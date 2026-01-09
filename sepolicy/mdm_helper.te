@@ -1,0 +1,58 @@
+type mdm_helper, domain;
+type mdm_helper_exec, exec_type, file_type;
+
+init_daemon_domain(mdm_helper)
+domain_trans(init, rootfs, mdm_helper)
+
+allow mdm_helper efsks_exec:file { read getattr open execute execute_no_trans };
+allow mdm_helper ks_exec:file { read getattr open execute execute_no_trans };
+#allow mdm_helper efs_block_device:blk_file { read open write getattr };
+allow mdm_helper radio_device:chr_file { read getattr open ioctl write};
+allow mdm_helper self:capability setuid;
+allow mdm_helper serial_device:chr_file { read write getattr open ioctl };
+allow mdm_helper vfat:file { read getattr open };
+allow mdm_helper radio_data_file:dir search;
+allow mdm_helper radio_data_file:file { setattr read write getattr open };
+allow mdm_helper vfat:dir search;
+allow mdm_helper shell_exec:file { execute_no_trans read execute open };
+allow mdm_helper radio_device:dir search;
+allow mdm_helper unlabeled:dir search;
+allow mdm_helper unlabeled:file { open read write getattr setattr };
+allow mdm_helper shell_exec:file getattr;
+allow mdm_helper toolbox_exec:file { execute execute_no_trans getattr open read };
+
+# Allow /dev/ttyUSB0 access
+allow mdm_helper serial_device:chr_file { write ioctl getattr };
+
+# Allow /dev/esoc-0 access 
+# Needed to access the esoc device to control the mdm
+allow mdm_helper esoc_device:dir r_dir_perms;
+allow mdm_helper esoc_device:chr_file rw_file_perms;
+
+# Needed by libmdmdetect to figure out the system configuration
+r_dir_file(mdm_helper, sysfs_esoc)
+
+allow mdm_helper sysfs_esoc:file {open read getattr};
+
+
+# Needed by mdm_helper
+allow mdm_helper ksbridgehsic_device:chr_file rw_file_perms;
+allow mdm_helper efsbridgehsic_device:chr_file rw_file_perms;
+ 
+#Needed in order to access the firmware partition
+r_dir_file(mdm_helper, firmware_file)
+
+# Need access /dev/kmsg
+allow mdm_helper kmsg_device:chr_file { read write getattr open ioctl };
+
+# Need access tmpfs
+allow mdm_helper radio_device:dir { getattr write};
+allow mdm_helper radio_device:blk_file { write};
+
+allow mdm_helper property_socket:sock_file {write};
+allow mdm_helper sysfs:file {append};
+
+
+
+
+

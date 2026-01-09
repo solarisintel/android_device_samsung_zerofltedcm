@@ -1,0 +1,9 @@
+type ks, domain;
+type ks_exec, exec_type, file_type;
+
+init_daemon_domain(ks)
+domain_trans(init, rootfs, ks)
+
+allow ks radio_device:chr_file { read getattr open ioctl write};
+allow ks radio_device:blk_file { read getattr open ioctl write};
+

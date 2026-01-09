@@ -1,0 +1,22 @@
+#####################################
+# qmux_socket(clientdomain)
+# Allow client domain to connecto and send
+# via a local socket to the qmux domain.
+# Also allow the client domain to remove
+# its own socket.
+define(`qmux_socket', `
+allow $1 qmuxd_socket:dir create_dir_perms;
+unix_socket_connect($1, qmuxd, qmuxd)
+allow $1 qmuxd_socket:sock_file { read getattr write setattr create unlink };
+')
+
+#####################################
+# diag_use(clientdomain)
+# allow clientdomain to read/write to diag
+define(`diag_use', `
+r_dir_file($1, sysfs_diag)   
+allow $1 diag_device:chr_file rw_file_perms;
+')
+
+
+
