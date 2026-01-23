@@ -22,7 +22,7 @@ allow netmgrd diagnostic_device:chr_file rw_file_perms;
 
 # /data/data_test/ access with shell
 allow netmgrd shell_exec:file { execute read open execute_no_trans };
-#allow netmgrd system_file:file { execute_no_trans };
+allow netmgrd system_file:file { execute_no_trans };
 
 ## Talk to init over the property socket
 #unix_socket_connect(netmgrd, property, init)

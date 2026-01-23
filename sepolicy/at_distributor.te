@@ -2,7 +2,7 @@ type at_distributor, domain;
 type at_distributor_exec, exec_type, file_type;
 init_daemon_domain(at_distributor)
 
-#allow at_distributor system_file:file { execute_no_trans };
+allow at_distributor system_file:file { execute_no_trans };
 
 allow at_distributor radio_device:chr_file { read write open ioctl };
 

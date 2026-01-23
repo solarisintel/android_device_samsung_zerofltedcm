@@ -23,17 +23,15 @@
 # inherit from zero-common
 include device/samsung/zero-common/BoardConfigCommon.mk
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := zerofltedcm,zeroflte
-
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += device/samsung/zerofltedcm/include
 
-# Kernel
-TARGET_KERNEL_CONFIG := lineageos_zerofltedcm_defconfig
+# Assert
+TARGET_OTA_ASSERT_DEVICE := zeroltedcm
 
-# Partitions
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3879731200
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos7420
+TARGET_KERNEL_CONFIG := lineageos_zerofltedcm_defconfig
 
 # Radio
 BOARD_MODEM_TYPE := mdm9x35
@@ -41,12 +39,9 @@ BOARD_MODEM_TYPE := mdm9x35
 # Sepolicy
 BOARD_SEPOLICY_DIRS += device/samsung/zerofltedcm/sepolicy
 
-# Sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
-# GPS
-TARGET_NO_RPC := true
-
-# Radio
+# RIL
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0,gprs,ppp0,rmnet0,rmnet1"
+
 

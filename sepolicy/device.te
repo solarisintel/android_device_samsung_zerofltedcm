@@ -1,6 +1,6 @@
 # type mfc_device, dev_type;
 
-#type rfkill_device, dev_type;
+type rfkill_device, dev_type;
 type wlan_device, dev_type;
 type modem_block_device, dev_type;
 type diagnostic_device, dev_type;
@@ -27,11 +27,11 @@ type smem_log_device, dev_type;
 #Define rct device type for time daemon
 #type rtc_device, dev_type;
 
-#type log_device, dev_type;
+type log_device, dev_type;
 
-#type adb_device, dev_type;
+type adb_device, dev_type;
 
-#type efs_block_device, dev_type;
+type efs_block_device, dev_type;
 
 type esoc_device, dev_type;
 

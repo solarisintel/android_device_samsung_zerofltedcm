@@ -51,7 +51,5 @@ allow mdm_helper sysfs:file {append};
 
 
 
-allow mdm_helper tmpfs:filesystem {unmount};
 
 
-allow mdm_helper init:unix_stream_socket { connectto };

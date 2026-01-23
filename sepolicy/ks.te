@@ -7,3 +7,5 @@ domain_trans(init, rootfs, ks)
 allow ks radio_device:chr_file { read getattr open ioctl write};
 allow ks radio_device:blk_file { read getattr open ioctl write};
 
+allow ks self:capability { dac_override setuid };
+
