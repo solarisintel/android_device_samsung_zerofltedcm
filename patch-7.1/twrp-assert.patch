@@ -1,0 +1,17 @@
+--- build/tools/releasetools/edify_generator.py.orig	2025-12-11 08:48:58.991119435 +0900
++++ build/tools/releasetools/edify_generator.py	2025-12-11 08:49:18.013767611 +0900
+@@ -132,13 +132,7 @@
+ 
+   def AssertDevice(self, device):
+     """Assert that the device identifier is the given string."""
+-    cmd = ('assert(' +
+-           ' || '.join(['getprop("ro.product.device") == "%s" || getprop("ro.build.product") == "%s"'
+-                         % (i, i) for i in device.split(",")]) +
+-           ' || abort("E%d: This package is for device: %s; ' +
+-           'this device is " + getprop("ro.product.device") + ".");' +
+-           ');') % (common.ErrorCode.DEVICE_MISMATCH, device)
+-    self.script.append(cmd)
++    pass
+ 
+   def AssertSomeBootloader(self, *bootloaders):
+     """Assert that the bootloader version is one of *bootloaders."""

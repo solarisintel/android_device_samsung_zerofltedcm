@@ -1,3 +1,4 @@
+
 #
 # Copyright (C) 2015 The Android Open Kang Project
 #
@@ -19,29 +20,24 @@ LOCAL_PATH := device/samsung/zerofltedcm
 ## device overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Properties
-TARGET_SYSTEM_PROP += device/samsung/zerofltedcm/system.prop
-
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2017-12-01
-
-# Inherit from universal7420-common
-$(call inherit-product, device/samsung/universal7420-common/universal7420-common.mk)
-
-# Also get non-open-source specific aspects if available
-$(call inherit-product, vendor/samsung/zero-common/zero-common-vendor.mk)
-$(call inherit-product, vendor/samsung/zerofltedcm/zerofltedcm-vendor.mk)
+# Audio
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml
+    
+# Inherit from zero-common
+$(call inherit-product, device/samsung/zero-common/zero-common.mk)
 
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/gps.conf:/system/etc/gps.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:/system/etc/sap.conf
+   
+# vendor files sc05g
+$(call inherit-product, vendor/samsung/zerofltedcm/zerofltedcm-vendor.mk)
 
-# adb debug
+# Include debugging props
 $(call inherit-product, device/samsung/zerofltedcm/system_prop_debug.mk)
-
+    
 # RIL  
 PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1
-

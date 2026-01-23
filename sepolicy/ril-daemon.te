@@ -4,7 +4,7 @@ type ril-daemon, domain;
 init_daemon_domain(ril-daemon)
 net_domain(ril-daemon)
 
-allow ril-daemon system_file:file { execute_no_trans };
+#allow ril-daemon system_file:file { execute_no_trans };
 allow ril-daemon self:capability { setuid };
 
 allow ril-daemon log_device:chr_file { write open };

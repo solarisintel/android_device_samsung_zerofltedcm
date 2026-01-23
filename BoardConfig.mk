@@ -20,15 +20,11 @@
 # definition file).
 #
 
-# inherit from universal7420-common
--include device/samsung/universal7420-common/BoardConfigCommon.mk
-
-# Inherit from proprietary vendor
--include vendor/samsung/zero-common/BoardConfigVendor.mk
--include vendor/samsung/zerofltedcm/BoardConfigVendor.mk
+# inherit from zero-common
+include device/samsung/zero-common/BoardConfigCommon.mk
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := zeroflte,zerofltedcm
+TARGET_OTA_ASSERT_DEVICE := zerofltedcm,zeroflte
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += device/samsung/zerofltedcm/include
@@ -36,13 +32,21 @@ TARGET_SPECIFIC_HEADER_PATH += device/samsung/zerofltedcm/include
 # Kernel
 TARGET_KERNEL_CONFIG := lineageos_zerofltedcm_defconfig
 
+# Partitions
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3879731200
+
 # Radio
 BOARD_MODEM_TYPE := mdm9x35
 
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/zerofltedcm/releasetools
-
 # Sepolicy
 BOARD_SEPOLICY_DIRS += device/samsung/zerofltedcm/sepolicy
+
+# Sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
+
+# GPS
+TARGET_NO_RPC := true
+
+# Radio
+BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0,gprs,ppp0,rmnet0,rmnet1"
 
