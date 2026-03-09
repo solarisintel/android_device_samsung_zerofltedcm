@@ -49,3 +49,10 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := "samsung/zerofltedcm/zeroflte:7.0/NRD90M/G920FXXS5EQL1:user/release-keys"
 
+TARGET_SCREEN_WIDTH := 1440
+TARGET_SCREEN_HEIGHT := 2560
+ANIMATION_HEIGHT := 235
+
+# bootanimation 
+PRODUCT_PACKAGES += \
+    bootanimation.zip
